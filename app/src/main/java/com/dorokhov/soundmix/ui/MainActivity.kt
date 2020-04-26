@@ -1,6 +1,5 @@
 package com.dorokhov.soundmix.ui
 
-import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(), SoundRecyclerViewAdapter.Interaction {
 
     var adapterSounds: SoundRecyclerViewAdapter? = null
-    var playingSounds = HashMap<String, ComponentName?>()
+    var playingSounds = HashMap<String, Intent?>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +47,8 @@ class MainActivity : AppCompatActivity(), SoundRecyclerViewAdapter.Interaction {
                 identifier = item.name
 
             }
-            playingSounds[item.name] = startService(intent)
+            playingSounds[item.name] = intent
+            startService(intent)
         }
     }
 
